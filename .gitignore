@@ -1,4 +1,4 @@
-/target/
+target/
 
 # Remove Cargo.lock when building libraries; keep for binaries
 Cargo.lock
