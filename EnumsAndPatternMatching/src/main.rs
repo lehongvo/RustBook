@@ -1,18 +1,44 @@
-#[derive(Debug)]
-struct User {
-    id: u32,
-    name: String,
-    email: String,
-}
+mod garden;
+mod hourse;
+mod math;
+mod network;
+mod outer;
+mod user;
 
-fn get_user_email(user: Option<User>) -> Result<String, String> {
-    let Some(user) = user else {
-        return Err("User not found".to_string());
-    };
+use crate::garden::vegetables::Asparagus;
+use crate::hourse::{
+    back_of_house::{Appetizer, kitchen},
+    front_of_house::{hosting, serving},
+};
+use crate::math::cal;
+use crate::network::{client, server};
+use crate::outer::inner;
+use crate::user::userStruct::User;
 
-    Ok(user.email)
-}
+fn main() {
+    let numbers = vec![21, 23, 123, 123, 12, 3];
+    let value = cal(&numbers);
+    println!("{}", value);
+    server::start(12);
+    client::connect("Vincent");
 
-fn make_exciting(s: &str) -> String {
-    s.replace(".", "!").replace("?", "‽")
+    let new_user = User::new(String::from("Vincent"), 21);
+    new_user.print();
+
+    inner::inner_pub();
+    inner::inner_public_create();
+
+    let plant = Asparagus {};
+    println!("Plant is {:?}", plant);
+
+    hosting::add_to_waitlist();
+    hosting::seat_at_table(1);
+
+    let order1 = Appetizer::Salad;
+    let order2 = Appetizer::Soup;
+
+    serving::take_order();
+    serving::serve_order(12);
+    kitchen::cook_order(12);
+    serving::take_payment(12);
 }
