@@ -1,10 +1,14 @@
+mod error_handling;
 mod garden;
 mod hourse;
 mod math;
 mod network;
 mod outer;
+mod storing;
 mod user;
+mod vector;
 
+use crate::error_handling::{handle, recoverable};
 use crate::garden::vegetables::Asparagus;
 use crate::hourse::{
     back_of_house::{Appetizer, kitchen},
@@ -13,7 +17,9 @@ use crate::hourse::{
 use crate::math::cal;
 use crate::network::{client, server};
 use crate::outer::inner;
-use crate::user::userStruct::User;
+use crate::storing::storing as storing_mod;
+use crate::user::user_struct::User;
+use crate::vector::lap_code::lap_code;
 
 fn main() {
     let numbers = vec![21, 23, 123, 123, 12, 3];
@@ -41,4 +47,9 @@ fn main() {
     serving::serve_order(12);
     kitchen::cook_order(12);
     serving::take_payment(12);
+
+    lap_code();
+    storing_mod::storing();
+
+    recoverable::recover_error()
 }

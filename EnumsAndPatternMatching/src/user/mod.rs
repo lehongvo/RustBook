@@ -1,1 +1,1 @@
-pub mod userStruct;
+pub mod user_struct;
